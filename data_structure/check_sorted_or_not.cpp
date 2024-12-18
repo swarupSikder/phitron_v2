@@ -26,25 +26,6 @@ void insert_at_tail(Node* &head, Node* &tail, int val){
     tail = newNode;
 }
 
-void insert_at_any_pos(Node* &head, int idx, int val){
-    Node* newNode = new Node(val);
-
-    //Edge case, if(idx indicates the 1st position)
-    if(idx==0){
-        newNode->next = head;
-        head = newNode;
-        return;
-    }
-
-    Node* tmp = head;
-    for(int i=1; i<idx ;i++){
-        tmp = tmp->next;
-    }
-    newNode->next = tmp->next;
-    tmp->next = newNode;
-    
-}
-
 void print_linked_list(Node* head){
     Node* tmp = head;
     while(tmp != NULL){
@@ -64,6 +45,26 @@ int listSize(Node* head){
     return i;
 }
 
+bool checkAsc(Node* head){
+    bool flag = true;
+    int min = head->val;            //1st node value
+
+    Node* tmp = head->next;         //2nd node value
+    while(tmp != NULL){
+        if(tmp->val <min){
+            min = tmp->val;
+        }
+        else{
+            //cout<< "found" <<endl;
+            flag = false;
+            break;
+        }
+        tmp = tmp->next;
+    }
+
+    return flag;
+}
+
 int main(){
     Node* head = NULL;
     Node* tail = NULL;
@@ -76,18 +77,7 @@ int main(){
     }
 
     //print_linked_list(head);
-    //cout<<"Size : "<< countSize <<endl;
-
-    int idx, newVal;
-    while(cin>> idx >> newVal){
-        if(idx>listSize(head)){
-            cout<< "Invalid" <<endl;
-        }
-        else{
-            insert_at_any_pos(head, idx, newVal);
-            print_linked_list(head);
-        }
-    }
+    (checkAsc(head))? std::cout<< "Yes" <<endl :  std::cout<< "No" <<endl;
     
     
     return 0;
