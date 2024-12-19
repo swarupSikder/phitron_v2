@@ -15,7 +15,7 @@ class Node{
         }
 };
 
-void insert_at_tail(Node* &head, Node* &tail, int val){
+void inputLinkedList(Node* &head, Node* &tail, int val){
     Node* newNode = new Node(val);
 
     //Edge case, (if linked list is empty)
@@ -29,21 +29,32 @@ void insert_at_tail(Node* &head, Node* &tail, int val){
     tail = newNode;
 }
 
-void print_linked_list(Node* head){
+int maxLL(Node* head){
     Node* tmp = head;
+    int max = INT_MIN;
+
     while(tmp != NULL){
-        cout<< tmp->val <<" ";
+        if(tmp->val > max){
+            max = tmp->val;
+        }
         tmp = tmp->next;
     }
-    cout<<endl;
+
+    return max;
 }
 
-void print_reverse_linked_list(Node* tmp){
-    //base case
-    if(tmp == NULL) return;
+void outputLinkedList(Node* head){
+    Node* tmp = head;
+    while(tmp != NULL){
+        //print the node
+        cout<< tmp->val;
 
-    print_reverse_linked_list(tmp->next);
-    cout<< tmp->val <<" ";
+        //control trailing spaces
+        (tmp->next == NULL)? std::cout<<endl : std::cout<<" ";
+
+        //forward the node
+        tmp = tmp->next;
+    }
 }
 
 int main(){
@@ -56,12 +67,12 @@ int main(){
         if(val == -1){
             break;
         }
-        insert_at_tail(head, tail, val);
+        inputLinkedList(head, tail, val);
     }
 
     //print
-    //print_linked_list(head);
-    print_reverse_linked_list(head);
+    cout<< maxLL(head) <<endl;
+    
     
     return 0;
 }

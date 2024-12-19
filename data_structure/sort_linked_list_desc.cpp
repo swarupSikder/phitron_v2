@@ -29,6 +29,26 @@ void insert_at_tail(Node* &head, Node* &tail, int val){
     tail = newNode;
 }
 
+int listSize(Node* head){
+    int i=0;
+    Node* tmp = head;
+    while(tmp != NULL){
+        i++;
+        tmp = tmp->next;
+    }
+    return i;
+}
+
+void sort_linked_list(Node* head){
+    for(Node* i = head; i->next != NULL ; i = i->next){
+        for(Node* j = i->next; j != NULL ; j = j->next){
+            if(i->val < j->val){
+                swap(i->val, j->val);
+            }
+        }
+    }
+}
+
 void print_linked_list(Node* head){
     Node* tmp = head;
     while(tmp != NULL){
@@ -36,14 +56,6 @@ void print_linked_list(Node* head){
         tmp = tmp->next;
     }
     cout<<endl;
-}
-
-void print_reverse_linked_list(Node* tmp){
-    //base case
-    if(tmp == NULL) return;
-
-    print_reverse_linked_list(tmp->next);
-    cout<< tmp->val <<" ";
 }
 
 int main(){
@@ -59,9 +71,12 @@ int main(){
         insert_at_tail(head, tail, val);
     }
 
+    //sort
+    sort_linked_list(head);
+
     //print
-    //print_linked_list(head);
-    print_reverse_linked_list(head);
+    print_linked_list(head);
+    
     
     return 0;
 }
