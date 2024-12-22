@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "g:/programming/c_cpp/phitron_v2/data_structure",
-      "program": "g:/programming/c_cpp/phitron_v2/data_structure/build/Debug/outDebug",
+      "cwd": "g:/programming/c_cpp/phitron_v2/ds_part_1",
+      "program": "g:/programming/c_cpp/phitron_v2/ds_part_1/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
