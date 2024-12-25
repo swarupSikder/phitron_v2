@@ -36,6 +36,25 @@ void outputLinkedList(DoubleNode* head){
     }
 }
 
+void outputLinkedListReverse(DoubleNode* tail){
+    if(tail == NULL){
+        cout<< "" <<endl;
+        return;
+    }
+
+    DoubleNode* tmp = tail;
+    while(tmp != NULL){
+        //print the node
+        cout<< tmp->val;
+
+        //control trailing spaces
+        (tmp->prev == NULL)? std::cout<<endl : std::cout<<" ";
+
+        //forward the node
+        tmp = tmp->prev;
+    }
+}
+
 int listSize(DoubleNode* head){
     int i=0;
     DoubleNode* tmp = head;
@@ -106,7 +125,7 @@ void insertValue(DoubleNode* &head, DoubleNode* &tail, int val, int idx){
 
         newNode->prev = tmp;
         newNode->next = tmp->next;
-        
+
         tmp->next->prev = newNode;
         tmp->next = newNode;
     }
@@ -117,25 +136,23 @@ int main(){
     DoubleNode* head = NULL;
     DoubleNode* tail = NULL;
 
-    head = new DoubleNode(10);
-    DoubleNode* a = new DoubleNode(20);
-    tail = new DoubleNode(30);
-    
-    head->next = a;
-    a->prev = head;
+    int q;
+    cin>> q;
 
-    a->next = tail;
-    tail->prev = a;
+    while(q--){
+        int x, v;
+        cin>> x >> v;
 
-    //print
-    outputLinkedList(head);
-
-    //insert at head
-    int idx = 1;                        //0 based index
-    insertValue(head, tail, 100, idx);
-
-    //print
-    outputLinkedList(head);
+        //invalid case
+        if(x<0 || x>listSize(head)){
+            cout<< "Invalid" <<endl;
+            continue;
+        }
+        
+        insertValue(head, tail, v, x);
+        outputLinkedList(head);
+        outputLinkedListReverse(tail);
+    }
     
     return 0;
 }
