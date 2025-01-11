@@ -1,6 +1,6 @@
 //author:   Swarup Sikder
 //judge:    ...
-//problem:  copy stack
+//problem:  reverse queue
 #include <bits/stdc++.h>
 using namespace std;
 
