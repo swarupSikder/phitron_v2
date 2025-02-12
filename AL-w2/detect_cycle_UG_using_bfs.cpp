@@ -19,10 +19,14 @@ void bfs(int src){
         q.pop();
 
         //print
-        cout<< par <<endl;
+        //cout<< par <<endl;
 
         //push the childs
         for(int child: adj_list[par]){
+            if(vis[child] && parent[par] != child){
+                cycle = true;
+            }
+
             if(!vis[child]){
                 q.push(child);
                 vis[child] = true;
@@ -51,7 +55,9 @@ int main(){
     for(int i=0; i<n ;i++){
         if(!vis[i]) bfs(i);
     }
-    
+
+    //print
+    (cycle)? std::cout<< "YES" <<endl : std::cout<< "NO" <<endl;
     
     return 0;
 }
